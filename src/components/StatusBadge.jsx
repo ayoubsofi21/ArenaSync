@@ -1,17 +1,15 @@
-// StatusBadge.js
-function StatusBadge({ status }) {
-  const statusStyles = {
-    "On Going": "bg-green-500 text-white",
-    Upcoming: "bg-blue-500 text-white",
-    Confirmed: "bg-green-500 text-white",
-    Pending: "bg-orange-500 text-white",
+export default function StatusBadge({ status }) {
+  const colorMap = {
+    "On Going": "bg-green-100 text-green-800",
+    Upcoming: "bg-blue-100 text-blue-800",
+    Pending: "bg-yellow-100 text-yellow-800",
   };
 
   return (
-    <span className={`px-4 py-1 rounded-full ${statusStyles[status]}`}>
+    <span
+      className={`px-2 py-1 rounded-full text-sm font-semibold ${colorMap[status]}`}
+    >
       {status}
     </span>
   );
 }
-
-export default StatusBadge;

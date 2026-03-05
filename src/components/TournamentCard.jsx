@@ -13,7 +13,7 @@ function TournamentCard() {
     <div className="space-y-6">
       {tournamentData.map((tournament) => (
         <Link
-            key={tournament.id}
+          key={tournament.id}
           to={`/tournament/${tournament.id}`}
           className="block max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 space-y-4 hover:shadow-lg transition-shadow duration-200"
         >
