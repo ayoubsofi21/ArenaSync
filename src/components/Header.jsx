@@ -15,7 +15,7 @@ export function Header() {
           aria-label="Profile"
         >
           <img
-            src="https://via.placeholder.com/40"
+            src="GVCF.jpg"
             alt="Profile"
             class="w-full h-full rounded-full object-cover"
           />
