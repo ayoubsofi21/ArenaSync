@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
-import { tournamentData } from "../data/tournamentDB";
+// import { tournamentData } from "../data/tournamentDB";
 import {
   CalendarIcon,
   UserGroupIcon,
@@ -8,10 +8,11 @@ import {
   TrophyIcon,
 } from "@heroicons/react/24/outline";
 
-function TournamentCard() {
+function TournamentCard({ tournaments }) {
+  if (!Array.isArray(tournaments)) return null;
   return (
     <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4">
-      {tournamentData.map((tournament) => (
+      {tournaments.map((tournament) => (
         <Link
           key={tournament.id}
           to={`/tournament/${tournament.id}`}
