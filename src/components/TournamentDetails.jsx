@@ -5,14 +5,14 @@ import StatusBadge from "./StatusBadge";
 import React, { useState, useEffect } from "react";
 import GVCF from "../assets/image.png";
 
-// Exemple de Spinner (ou Loader)
-
 export function LoadingSpinner() {
   return (
-    <div class="flex flex-col items-center justify-center h-screen gap-4">
-      <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+    <div className="flex flex-col items-center justify-center h-screen gap-4">
+      <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
 
-      <p class="text-gray-600 text-lg font-medium animate-pulse">Loading...</p>
+      <p className="text-gray-600 text-lg font-medium animate-pulse">
+        Loading...
+      </p>
     </div>
   );
 }

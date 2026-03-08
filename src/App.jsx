@@ -7,17 +7,25 @@ import { Header } from "./components/Header.jsx";
 // import Home from "./pages/Home";
 import ParcipantRow from "./components/ParticipantRow";
 import TournamentDetails from "./components/TournamentDetails.jsx";
+import ProfileCard from "./Pages/Profile.jsx";
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen relative pb-20">
-        <Header />
         <Routes>
-          <Route path="/" element={<TournamentCard />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <TournamentCard />
+              </>
+            }
+          />
           <Route path="/tournament" element={<ParcipantRow />} />
           <Route path="/tournament/:id" element={<TournamentDetails />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={<ProfileCard />} />
         </Routes>
         <Footer />
       </div>
