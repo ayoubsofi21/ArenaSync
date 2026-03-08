@@ -3,6 +3,7 @@ import { tournamentData } from "../data/tournamentDB";
 import ParticipantRow from "./ParticipantRow";
 import StatusBadge from "./StatusBadge";
 import React, { useState, useEffect } from "react";
+import GVCF from "../assets/image.png";
 
 // Exemple de Spinner (ou Loader)
 
@@ -45,13 +46,19 @@ function TournamentDetails() {
   return (
     <div className="container mx-auto p-6">
       <h4 className="text-2xl font-bold flex w-full gap-3">
-        {
+        {tournament.participants.length > 0 ? (
           <img
             src={tournament.participants[0].avatar}
             alt={tournament.title}
             className="w-12 h-12 rounded-md object-cover"
           />
-        }
+        ) : (
+          <img
+            src={GVCF}
+            alt={tournament.title}
+            className="w-12 h-12 rounded-md object-cover"
+          />
+        )}
         {tournament.title}
       </h4>
       <p className="text-gray-600">
