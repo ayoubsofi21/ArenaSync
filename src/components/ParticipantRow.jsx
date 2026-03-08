@@ -5,10 +5,10 @@ export default function ParticipantRow({ name, status, avatar }) {
 
   return (
     <div
-      className={`flex flex-col items-start gap-1 p-4 rounded-2xl 
+      className={`flex flex-col items-start gap-1 p-4 rounded-2xl lg:flex-row lg:justify-between lg:items-center
       ${isConfirmed ? "bg-green-100" : "bg-orange-100"}`}
     >
-      <div className="flex gap-4">
+      <div className="flex gap-4 lg:items-center">
         <img
           src={avatar}
           alt={name}
