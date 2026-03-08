@@ -1,13 +1,42 @@
 import { useParams } from "react-router-dom";
-import { tournamentData } from "../data/tournamentDB"; // Import data
+import { tournamentData } from "../data/tournamentDB";
 import ParticipantRow from "./ParticipantRow";
 import StatusBadge from "./StatusBadge";
+import React, { useState, useEffect } from "react";
 
+// Exemple de Spinner (ou Loader)
+
+export function LoadingSpinner() {
+  return (
+    <div class="flex flex-col items-center justify-center h-screen gap-4">
+      <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+
+      <p class="text-gray-600 text-lg font-medium animate-pulse">Loading...</p>
+    </div>
+  );
+}
 function TournamentDetails() {
   const { id } = useParams();
 
-  // Convert id to number to match tournamentData
-  const tournament = tournamentData.find((t) => t.id === id);
+  // const tournament = tournamentData.find((t) => t.id === id);
+
+  // if (!tournament) {
+  //   return <p className="text-center mt-6">Tournament not found</p>;
+  // }
+  const [tournament, setTournament] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const data = tournamentData.find((t) => t.id === id);
+      setTournament(data);
+      setLoading(false);
+    }, 1000);
+  }, [id]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   if (!tournament) {
     return <p className="text-center mt-6">Tournament not found</p>;
@@ -15,11 +44,20 @@ function TournamentDetails() {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold">{tournament.title}</h2>
+      <h4 className="text-2xl font-bold flex w-full gap-3">
+        {
+          <img
+            src={tournament.participants[0].avatar}
+            alt={tournament.title}
+            className="w-12 h-12 rounded-md object-cover"
+          />
+        }
+        {tournament.title}
+      </h4>
       <p className="text-gray-600">
         {tournament.sport} | {tournament.date} | {tournament.location}
       </p>
-      <StatusBadge status={tournament.status} />
+      <StatusBadge statusdata={tournament.status} />
       <p className="mt-4">{tournament.description}</p>
 
       <div className="mt-6">

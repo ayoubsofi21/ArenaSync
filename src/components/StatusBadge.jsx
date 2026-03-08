@@ -1,4 +1,4 @@
-export default function StatusBadge({ status }) {
+export default function StatusBadge({ statusdata }) {
   const colorMap = {
     "On Going": "bg-green-100 text-green-800",
     Upcoming: "bg-blue-100 text-blue-800",
@@ -7,9 +7,9 @@ export default function StatusBadge({ status }) {
 
   return (
     <span
-      className={`px-2 py-1 rounded-full text-sm font-semibold ${colorMap[status]}`}
+      className={`px-2 py-1 rounded-full text-sm font-semibold ${colorMap[statusdata]}`}
     >
-      {status}
+      {statusdata}
     </span>
   );
 }

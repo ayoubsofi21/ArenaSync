@@ -37,7 +37,6 @@ function TournamentCard() {
 
           <hr className="border-gray-200" />
 
-          {/* Info Section */}
           <div className="space-y-2 text-gray-700 text-sm">
             <div className="flex items-center gap-2">
               <UserGroupIcon className="w-5 h-5 text-gray-500" />
