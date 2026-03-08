@@ -70,14 +70,16 @@ function TournamentDetails() {
       <div className="mt-6">
         <h3 className="text-xl font-semibold">Participants</h3>
         {tournament.participants && tournament.participants.length > 0 ? (
-          tournament.participants.map((p) => (
-            <ParticipantRow
-              key={p.id}
-              name={p.name}
-              status={p.status}
-              avatar={p.avatar}
-            />
-          ))
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mt-4">
+            {tournament.participants.map((p) => (
+              <ParticipantRow
+                key={p.id}
+                name={p.name}
+                status={p.status}
+                avatar={p.avatar}
+              />
+            ))}
+          </div>
         ) : (
           <p>No participants yet</p>
         )}
