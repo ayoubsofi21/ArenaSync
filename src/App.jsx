@@ -32,15 +32,7 @@ function App() {
             }
           />
           <Route path="/profile" element={<ProfileCard />} />
-          <Route
-            path="/register/:id"
-            element={
-              <>
-                <Header />
-                <RegistrationForm />
-              </>
-            }
-          />
+          <Route path="/register/:id" element={<RegistrationForm />} />
         </Routes>
         <Footer />
       </div>

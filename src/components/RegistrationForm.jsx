@@ -1,120 +1,102 @@
 import { useState } from "react";
+import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import {Link} from "react-router-dom"
+const sports = [
+  { name: "Basketball", icon: "🏀" },
+  { name: "Horse Riding", icon: "🐎" },
+  { name: "Volleyball", icon: "🏐" },
+  { name: "Tennis", icon: "🎾" },
+  { name: "Boxing", icon: "🥊" },
+  { name: "Swimming", icon: "🏊‍♂️" },
+  { name: "Football", icon: "⚽" },
+];
 
-function RegistrationForm() {
+function CreateTournamentForm() {
   const [formData, setFormData] = useState({
-    name: "",
-    team: "",
-    level: "",
+    sport: "",
+    title: "",
+    description: "",
   });
-
-  const [errors, setErrors] = useState({});
-
-  const regex = {
-    name: /^[A-Za-z\s]$/,
-    team: /^[A-Za-z\s]$/,
-  };
-
-  const levels = ["Beginner", "Intermediate", "Advanced"];
-
-  const validate = (name, value) => {
-    let error = "";
-
-    if (name === "name" && !regex.name.test(value)) {
-      error = "Name must contain at least 3 letters";
-    }
-
-    if (name === "team" && !regex.team.test(value)) {
-      error = "Team must contain at least 2 letters";
-    }
-
-    if (name === "level" && value === "") {
-      error = "Please select a level";
-    }
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: error,
-    }));
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    validate(name, value);
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const isFormValid =
-    formData.name &&
-    formData.team &&
-    formData.level &&
-    !errors.name &&
-    !errors.team &&
-    !errors.level;
+  const handleSportSelect = (sportName) => {
+    setFormData((prev) => ({ ...prev, sport: sportName }));
+  };
 
-  const handleSubmit = (e) => {
+  const isFormValid = formData.sport && formData.title && formData.description;
+
+  const handleNext = (e) => {
     e.preventDefault();
-    console.log("Participant added:", formData);
+    console.log("Tournament data:", formData);
+    // Here you can go to next step (Step 2/4)
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto bg-white p-6 rounded-xl shadow space-y-4"
+      onSubmit={handleNext}
+      className="max-w-md mx-auto bg-white p-6 rounded-xl shadow space-y-6"
     >
-      <h2 className="text-xl font-bold">Tournament Registration</h2>
+      <p className="flex justify-between items-center">
+        <Link to="/">
+          <ChevronLeftIcon className="w-6 h-6 text-gray-600 cursor-pointer" />
+        </Link>
+        <h2 className="text-xl font-bold">Create Tournament</h2>
+      </p>
+      <p className="text-gray-500">Step 1 of 4 - Basic Information</p>
 
-      {/* Name */}
+      {/* Select Sport */}
       <div>
-        <label className="block font-medium">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full border rounded p-2"
-        />
-        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-      </div>
-
-      {/* Team */}
-      <div>
-        <label className="block font-medium">Team</label>
-        <input
-          type="text"
-          name="team"
-          value={formData.team}
-          onChange={handleChange}
-          className="w-full border rounded p-2"
-        />
-        {errors.team && <p className="text-red-500 text-sm">{errors.team}</p>}
-      </div>
-
-      {/* Level */}
-      <div>
-        <label className="block font-medium">Level</label>
-        <select
-          name="level"
-          value={formData.level}
-          onChange={handleChange}
-          className="w-full border rounded p-2"
-        >
-          <option value="">Select level</option>
-          {levels.map((lvl) => (
-            <option key={lvl} value={lvl}>
-              {lvl}
-            </option>
+        <p className="font-medium mb-2">Select Sport</p>
+        <div className="grid grid-cols-3 gap-2">
+          {sports.map((sport) => (
+            <button
+              key={sport.name}
+              type="button"
+              onClick={() => handleSportSelect(sport.name)}
+              className={`flex flex-col items-center p-3 border rounded-lg ${
+                formData.sport === sport.name
+                  ? "border-blue-600 bg-blue-100"
+                  : "border-gray-300"
+              }`}
+            >
+              <span className="text-2xl">{sport.icon}</span>
+              <span className="text-sm mt-1">{sport.name}</span>
+            </button>
           ))}
-        </select>
-
-        {errors.level && <p className="text-red-500 text-sm">{errors.level}</p>}
+        </div>
       </div>
 
-      {/* Submit */}
+      {/* Tournament Title */}
+      <div>
+        <label className="block font-medium mb-1">Tournament Title</label>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          className="w-full border rounded p-2"
+          placeholder="Ring Masters League"
+        />
+      </div>
+
+      {/* Description */}
+      <div>
+        <label className="block font-medium mb-1">Description</label>
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          className="w-full border rounded p-2"
+          rows={4}
+          placeholder="A dynamic boxing competition bringing together passionate fighters and enthusiastic fans."
+        />
+      </div>
+
+      {/* Next Button */}
       <button
         type="submit"
         disabled={!isFormValid}
@@ -124,10 +106,10 @@ function RegistrationForm() {
             : "bg-gray-400 cursor-not-allowed"
         }`}
       >
-        Register
+        Next
       </button>
     </form>
   );
 }
 
-export default RegistrationForm;
+export default CreateTournamentForm;
