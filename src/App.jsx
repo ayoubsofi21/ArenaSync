@@ -5,6 +5,7 @@ import { Header } from "./components/Header.jsx";
 import ParcipantRow from "./components/ParticipantRow";
 import TournamentDetails from "./components/TournamentDetails.jsx";
 import ProfileCard from "./Pages/Profile";
+import RegistrationForm from "./components/RegistrationForm.jsx";
 
 function App() {
   return (
@@ -31,6 +32,15 @@ function App() {
             }
           />
           <Route path="/profile" element={<ProfileCard />} />
+          <Route
+            path="/register/:id"
+            element={
+              <>
+                <Header />
+                <RegistrationForm />
+              </>
+            }
+          />
         </Routes>
         <Footer />
       </div>
