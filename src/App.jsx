@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TournamentCard from "./components/TournamentCard";
 import Footer from "./components/Footer";
 import { Header } from "./components/Header.jsx";
-// import Home from "./pages/Home";
 import ParcipantRow from "./components/ParticipantRow";
 import TournamentDetails from "./components/TournamentDetails.jsx";
 import ProfileCard from "./Pages/Profile";

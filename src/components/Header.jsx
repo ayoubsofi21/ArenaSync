@@ -1,11 +1,10 @@
-export function Header({ query, setQuery }) {
+export function Header() {
   return (
     <header
       className="bg-gradient-to-br from-purple-600 via-blue-500 to-purple-700 text-white rounded-b-3xl relative overflow-hidden"
       aria-label="App header"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Top section */}
         <div className="flex items-center justify-between gap-4">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
             Good Morning, Samuel Walker!
@@ -23,7 +22,6 @@ export function Header({ query, setQuery }) {
           </button>
         </div>
 
-        {/* Search */}
         <div className="flex items-center gap-3 bg-white text-gray-800 p-3 rounded-xl w-full mt-6 shadow-md ">
           <span className="text-gray-500 text-lg">🔎</span>
 
