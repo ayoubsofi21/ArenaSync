@@ -39,9 +39,9 @@ function ParticipantForm() {
 
     tournament.participants.push(newParticipant);
     // 2. Enregistrer tout le tournoi dans localStorage
-    localStorage.setItem("tournamentData", JSON.stringify(tournamentData));
+    // localStorage.setItem("tournamentData", JSON.stringify(tournamentData));
 
-    console.log(tournament.participants);
+    // console.log(tournament.participants);
   };
 
   return (

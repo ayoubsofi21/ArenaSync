@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { tournamentData } from "../data/tournamentDB";
 import ParticipantRow from "./ParticipantRow";
 import StatusBadge from "./StatusBadge";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GVCF from "../assets/image.png";
 
 export function LoadingSpinner() {
