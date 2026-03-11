@@ -26,7 +26,7 @@ function App() {
             path="/tournament/:id"
             element={
               <>
-                <Header />
+                {/* <Header /> */}
                 <TournamentDetails />
               </>
             }

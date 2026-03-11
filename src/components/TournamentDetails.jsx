@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { tournamentData } from "../data/tournamentDB";
 import ParticipantRow from "./ParticipantRow";
 import StatusBadge from "./StatusBadge";
@@ -44,47 +44,54 @@ function TournamentDetails() {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <h4 className="text-2xl font-bold flex w-full gap-3">
-        {tournament.participants.length > 0 ? (
-          <img
-            src={tournament.participants[0].avatar}
-            alt={tournament.title}
-            className="w-12 h-12 rounded-md object-cover"
-          />
-        ) : (
-          <img
-            src={GVCF}
-            alt={tournament.title}
-            className="w-12 h-12 rounded-md object-cover"
-          />
-        )}
-        {tournament.title}
-      </h4>
-      <p className="text-gray-600">
-        {tournament.sport} | {tournament.date} | {tournament.location}
-      </p>
-      <StatusBadge statusdata={tournament.status} />
-      <p className="mt-4">{tournament.description}</p>
+    <>
+      <Link to="/">
+        <button className="p-4 sm:p-6 bg-blue" aria-label="Go back">
+          <i className="fas fa-arrow-left text-black text-lg"></i>
+        </button>
+      </Link>
+      <div className="container mx-auto p-6">
+        <h4 className="text-2xl font-bold flex w-full gap-3">
+          {tournament.participants.length > 0 ? (
+            <img
+              src={tournament.participants[0].avatar}
+              alt={tournament.title}
+              className="w-12 h-12 rounded-md object-cover"
+            />
+          ) : (
+            <img
+              src={GVCF}
+              alt={tournament.title}
+              className="w-12 h-12 rounded-md object-cover"
+            />
+          )}
+          {tournament.title}
+        </h4>
+        <p className="text-gray-600">
+          {tournament.sport} | {tournament.date} | {tournament.location}
+        </p>
+        <StatusBadge statusdata={tournament.status} />
+        <p className="mt-4">{tournament.description}</p>
 
-      <div className="mt-6">
-        <h3 className="text-xl font-semibold">Participants</h3>
-        {tournament.participants && tournament.participants.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mt-4">
-            {tournament.participants.map((p) => (
-              <ParticipantRow
-                key={p.id}
-                name={p.name}
-                status={p.status}
-                avatar={p.avatar}
-              />
-            ))}
-          </div>
-        ) : (
-          <p>No participants yet</p>
-        )}
+        <div className="mt-6">
+          <h3 className="text-xl font-semibold">Participants</h3>
+          {tournament.participants && tournament.participants.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mt-4">
+              {tournament.participants.map((p) => (
+                <ParticipantRow
+                  key={p.id}
+                  name={p.name}
+                  status={p.status}
+                  avatar={p.avatar}
+                />
+              ))}
+            </div>
+          ) : (
+            <p>No participants yet</p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
