@@ -6,7 +6,11 @@ import { tournamentData } from "../data/tournamentDB";
 function ParticipantForm() {
   //   const [participants, setParticipants] = useState([]);
   const { id } = useParams();
-  const tournament = tournamentData.find((t) => t.id === id);
+  const savedData = localStorage.getItem("tournamentData");
+  const data = savedData ? JSON.parse(savedData) : tournamentData;
+
+  const tournament = data.find((t) => t.id === id);
+  //   const tournament = tournamentData.find((t) => t.id === id);
   console.log(tournament);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,16 +23,32 @@ function ParticipantForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+
+  //     // setParticipants((prev) => [...prev, formData]);
+
+  //     // setFormData({
+  //     //   name: "",
+  //     //   avatar: "",
+  //     //   status: "Confirmed",
+  //     // });
+
+  //     const newParticipant = {
+  //       id: Date.now().toString(),
+  //       name: formData.name,
+  //       avatar: formData.avatar,
+  //       status: formData.status,
+  //     };
+
+  //     tournament.participants.push(newParticipant);
+  //     // 2. Enregistrer tout le tournoi dans localStorage
+  //     localStorage.setItem("tournamentData", JSON.stringify(tournamentData));
+
+  //     console.log(tournament.participants);
+  //   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // setParticipants((prev) => [...prev, formData]);
-
-    // setFormData({
-    //   name: "",
-    //   avatar: "",
-    //   status: "Confirmed",
-    // });
 
     const newParticipant = {
       id: Date.now().toString(),
@@ -38,10 +58,10 @@ function ParticipantForm() {
     };
 
     tournament.participants.push(newParticipant);
-    // 2. Enregistrer tout le tournoi dans localStorage
-    // localStorage.setItem("tournamentData", JSON.stringify(tournamentData));
 
-    // console.log(tournament.participants);
+    localStorage.setItem("tournamentData", JSON.stringify(data));
+
+    console.log(tournament.participants);
   };
 
   return (
