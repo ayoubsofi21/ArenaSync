@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TournamentCard from "./components/TournamentCard";
+// import TournamentCard from "./components/TournamentCard";
 import Footer from "./components/Footer";
 import { Header } from "./components/Header.jsx";
 import ParcipantRow from "./components/ParticipantRow";
 import TournamentDetails from "./components/TournamentDetails.jsx";
 import ProfileCard from "./Pages/Profile";
 import RegistrationForm from "./components/RegistrationForm.jsx";
+import TournamentList from "./components/TournamentList.jsx";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             element={
               <>
                 <Header />
-                <TournamentCard />
+                <TournamentList />
               </>
             }
           />

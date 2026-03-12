@@ -6,15 +6,6 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between gap-4">
-          {/* Bouton flèche gauche
-          <button
-            className="w-10 h-10 sm:w-11 sm:h-11 bg-white/20 rounded-full flex items-center justify-center"
-            aria-label="Go back"
-            onClick={() => window.history.back()} // redirige vers la page précédente
-          >
-            <i className="fas fa-arrow-left text-white text-lg"></i>
-          </button> */}
-
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
             Good Morning, Samuel Walker!
           </h1>

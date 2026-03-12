@@ -5,10 +5,7 @@ import { tournamentData } from "../data/tournamentDB";
 import { Link } from "react-router-dom";
 
 function ParticipantForm() {
-  //   const [participants, setParticipants] = useState([]);
   const { id } = useParams();
-
-  // 2. Enregistrer tout le tournoi dans localStorage
   const [tournaments, setTournaments] = useState(() => {
     const stored = localStorage.getItem("tournamentData");
     return stored ? JSON.parse(stored) : tournamentData;
@@ -26,29 +23,6 @@ function ParticipantForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  //   const handleSubmit = (e) => {
-
-  //     e.preventDefault();
-
-  //     setParticipants((prev) => [...prev, formData]);
-
-  //     setFormData({
-  //       name: "",
-  //       avatar: "",
-  //       status: "Confirmed",
-  //     });
-
-  //     const newParticipant = {
-  //       id: Date.now().toString(),
-  //       name: formData.name,
-  //       avatar: formData.avatar,
-  //       status: formData.status,
-  //     };
-
-  //     tournament.participants.push(newParticipant);
-
-  //     console.log(tournament.participants);
-  //   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
