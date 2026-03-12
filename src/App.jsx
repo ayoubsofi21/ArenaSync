@@ -6,7 +6,7 @@ import { Header } from "./components/Header.jsx";
 import ParcipantRow from "./components/ParticipantRow";
 import TournamentDetails from "./components/TournamentDetails.jsx";
 import ProfileCard from "./Pages/Profile";
-
+import TournamentList from "./components/TournamentList.jsx";
 function App() {
   return (
     <Router>
@@ -17,7 +17,7 @@ function App() {
             element={
               <>
                 <Header />
-                <TournamentCard />
+                <TournamentList />
               </>
             }
           />
