@@ -29,7 +29,10 @@ function TournamentDetails() {
 
   useEffect(() => {
     setTimeout(() => {
-      const data = tournamentData.find((t) => t.id === id);
+      // const data = tournamentData.find((t) => t.id === id);
+      const stored = localStorage.getItem("tournamentData");
+      const tournaments = stored ? JSON.parse(stored) : tournamentData;
+      const data = tournaments.find((t) => t.id === id);
       setTournament(data);
       setLoading(false);
     }, 1000);

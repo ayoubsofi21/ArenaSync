@@ -2,15 +2,18 @@ import { useState } from "react";
 // import ParticipantCard from "./ParticipantRow";
 import { useParams } from "react-router-dom";
 import { tournamentData } from "../data/tournamentDB";
+import { Link } from "react-router-dom";
 
 function ParticipantForm() {
   //   const [participants, setParticipants] = useState([]);
   const { id } = useParams();
-  const savedData = localStorage.getItem("tournamentData");
-  const data = savedData ? JSON.parse(savedData) : tournamentData;
 
-  const tournament = data.find((t) => t.id === id);
-  //   const tournament = tournamentData.find((t) => t.id === id);
+  // 2. Enregistrer tout le tournoi dans localStorage
+  const [tournaments, setTournaments] = useState(() => {
+    const stored = localStorage.getItem("tournamentData");
+    return stored ? JSON.parse(stored) : tournamentData;
+  });
+  const tournament = tournaments.find((t) => t.id === id);
   console.log(tournament);
   const [formData, setFormData] = useState({
     name: "",
@@ -24,15 +27,16 @@ function ParticipantForm() {
   };
 
   //   const handleSubmit = (e) => {
+
   //     e.preventDefault();
 
-  //     // setParticipants((prev) => [...prev, formData]);
+  //     setParticipants((prev) => [...prev, formData]);
 
-  //     // setFormData({
-  //     //   name: "",
-  //     //   avatar: "",
-  //     //   status: "Confirmed",
-  //     // });
+  //     setFormData({
+  //       name: "",
+  //       avatar: "",
+  //       status: "Confirmed",
+  //     });
 
   //     const newParticipant = {
   //       id: Date.now().toString(),
@@ -42,8 +46,6 @@ function ParticipantForm() {
   //     };
 
   //     tournament.participants.push(newParticipant);
-  //     // 2. Enregistrer tout le tournoi dans localStorage
-  //     localStorage.setItem("tournamentData", JSON.stringify(tournamentData));
 
   //     console.log(tournament.participants);
   //   };
@@ -57,16 +59,28 @@ function ParticipantForm() {
       status: formData.status,
     };
 
-    tournament.participants.push(newParticipant);
+    const updatedTournaments = tournaments.map((t) => {
+      if (t.id === id) {
+        return {
+          ...t,
+          participants: [...t.participants, newParticipant],
+        };
+      }
+      return t;
+    });
 
-    localStorage.setItem("tournamentData", JSON.stringify(data));
+    setTournaments(updatedTournaments);
 
-    console.log(tournament.participants);
+    localStorage.setItem("tournamentData", JSON.stringify(updatedTournaments));
+
+    setFormData({
+      name: "",
+      avatar: "",
+      status: "Confirmed",
+    });
   };
-
   return (
     <div className="max-w-md mx-auto">
-      {/* FORM */}
       <form
         onSubmit={handleSubmit}
         className="bg-white p-4 rounded-xl shadow mb-6 space-y-3"
@@ -106,14 +120,21 @@ function ParticipantForm() {
         </button>
       </form>
 
-      {/* {participants.map((p, index) => (
+      {/* {tournament?.participants.map((p) => (
         <ParticipantCard
-          key={index}
+          key={p.id}
           name={p.name}
           avatar={p.avatar}
           status={p.status}
         />
       ))} */}
+      <Link
+        to={`/tournament/${id}`}
+        state={{ participants: tournament?.participants }}
+      >
+        {" "}
+        View Participants
+      </Link>
     </div>
   );
 }
