@@ -136,16 +136,6 @@ function ParticipantForm() {
         {" "}
         View Participants
       </Link>
-      <button
-        hidden
-        onClick={() => {
-          localStorage.removeItem("tournamentData");
-          alert("All tournament data removed from localStorage!");
-        }}
-        className="bg-red-600 text-white p-2 rounded"
-      >
-        Clear All Data
-      </button>
     </div>
   );
 }
