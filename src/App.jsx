@@ -7,8 +7,9 @@ import TournamentDetails from "./components/TournamentDetails.jsx";
 import ProfileCard from "./Pages/Profile";
 import RegistrationForm from "./components/RegistrationForm.jsx";
 import TournamentList from "./components/TournamentList.jsx";
-
+import { useState } from "react";
 function App() {
+  const [search, setSearch] = useState("");
   return (
     <Router>
       <div className="min-h-screen relative pb-20">
@@ -17,8 +18,8 @@ function App() {
             path="/"
             element={
               <>
-                <Header />
-                <TournamentList />
+                <Header search={search} setSearch={setSearch} />
+                <TournamentList search={search} />
               </>
             }
           />

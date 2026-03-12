@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
-import { tournamentData } from "../data/tournamentDB";
+// import { tournamentData } from "../data/tournamentDB";
 import {
   CalendarIcon,
   UserGroupIcon,

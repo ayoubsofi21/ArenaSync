@@ -1,4 +1,4 @@
-export function Header() {
+export function Header({ search, setSearch }) {
   return (
     <header
       className="bg-gradient-to-br from-purple-600 via-blue-500 to-purple-700 text-white rounded-b-3xl relative overflow-hidden"
@@ -29,6 +29,8 @@ export function Header() {
             type="search"
             placeholder="Search tournaments..."
             aria-label="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="flex-1 outline-none text-sm sm:text-base"
           />
 
