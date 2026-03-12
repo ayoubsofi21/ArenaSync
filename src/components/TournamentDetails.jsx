@@ -3,7 +3,7 @@ import { tournamentData } from "../data/tournamentDB";
 import ParticipantRow from "./ParticipantRow";
 import StatusBadge from "./StatusBadge";
 import { useState, useEffect } from "react";
-import GVCF from "../assets/image.png";
+// import GVCF from "../assets/image.png";
 
 export function LoadingSpinner() {
   return (
@@ -56,19 +56,27 @@ function TournamentDetails() {
       <div className="container mx-auto p-6">
         <h4 className="text-2xl font-bold flex w-full gap-3">
           {tournament.participants.length > 0 ? (
-            <img
-              src={tournament.participants[0].avatar}
-              alt={tournament.title}
-              className="w-12 h-12 rounded-md object-cover"
-            />
+            <>
+              <img
+                src={
+                  tournament.participants[0].avatar ||
+                  "https://i.pravatar.cc/150?u=u4"
+                }
+                alt={tournament.title}
+                className="w-12 h-12 rounded-md object-cover"
+              />
+              {tournament.title}
+            </>
           ) : (
-            <img
-              src={GVCF}
-              alt={tournament.title}
-              className="w-12 h-12 rounded-md object-cover"
-            />
+            <>
+              <img
+                src="https://i.pravatar.cc/150?u=u4"
+                alt={tournament.title}
+                className="w-12 h-12 rounded-md object-cover"
+              />
+              {tournament.title}
+            </>
           )}
-          {tournament.title}
         </h4>
         <p className="text-gray-600">
           {tournament.sport} | {tournament.date} | {tournament.location}

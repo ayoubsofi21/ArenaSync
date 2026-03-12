@@ -51,7 +51,7 @@ export const tournamentData = [
     participantsCount: "8/12 Teams",
     format: "Single Elimination",
     type: "Community",
-    participants: [],
+    participants: [{ avatar: "https://i.pravatar.cc/150?u=u4" }],
   },
 
   {

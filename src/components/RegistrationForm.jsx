@@ -131,10 +131,21 @@ function ParticipantForm() {
       <Link
         to={`/tournament/${id}`}
         state={{ participants: tournament?.participants }}
+        className="text-blue-600 font-medium hover:underline"
       >
         {" "}
         View Participants
       </Link>
+      <button
+        hidden
+        onClick={() => {
+          localStorage.removeItem("tournamentData");
+          alert("All tournament data removed from localStorage!");
+        }}
+        className="bg-red-600 text-white p-2 rounded"
+      >
+        Clear All Data
+      </button>
     </div>
   );
 }
