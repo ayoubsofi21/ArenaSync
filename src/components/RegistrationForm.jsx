@@ -1,36 +1,29 @@
 import { useState } from "react";
-// import ParticipantCard from "./ParticipantRow";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { tournamentData } from "../data/tournamentDB";
-import { Link } from "react-router-dom";
 
 function ParticipantForm() {
   const { id } = useParams();
+
   const [tournaments, setTournaments] = useState(() => {
     const stored = localStorage.getItem("tournamentData");
     return stored ? JSON.parse(stored) : tournamentData;
   });
-  const tournament = tournaments.find((t) => t.id === id);
-  console.log(tournament);
-  const [formData, setFormData] = useState({
-    name: "",
-    avatar: "",
-    status: "Confirmed",
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const tournament = tournaments.find((t) => t.id === id);
+
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [status, setStatus] = useState("Confirmed");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newParticipant = {
       id: Date.now().toString(),
-      name: formData.name,
-      avatar: formData.avatar,
-      status: formData.status,
+      name,
+      avatar,
+      status,
     };
 
     const updatedTournaments = tournaments.map((t) => {
@@ -44,15 +37,13 @@ function ParticipantForm() {
     });
 
     setTournaments(updatedTournaments);
-
     localStorage.setItem("tournamentData", JSON.stringify(updatedTournaments));
 
-    setFormData({
-      name: "",
-      avatar: "",
-      status: "Confirmed",
-    });
+    setName("");
+    setAvatar("");
+    setStatus("Confirmed");
   };
+
   return (
     <div className="max-w-md mx-auto">
       <form
@@ -63,26 +54,23 @@ function ParticipantForm() {
 
         <input
           type="text"
-          name="name"
           placeholder="Participant Name"
-          value={formData.name}
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="w-full border p-2 rounded"
         />
 
         <input
           type="text"
-          name="avatar"
           placeholder="Avatar URL"
-          value={formData.avatar}
-          onChange={handleChange}
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
           className="w-full border p-2 rounded"
         />
 
         <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
           className="w-full border p-2 rounded"
         >
           <option>Confirmed</option>
@@ -94,20 +82,11 @@ function ParticipantForm() {
         </button>
       </form>
 
-      {/* {tournament?.participants.map((p) => (
-        <ParticipantCard
-          key={p.id}
-          name={p.name}
-          avatar={p.avatar}
-          status={p.status}
-        />
-      ))} */}
       <Link
         to={`/tournament/${id}`}
         state={{ participants: tournament?.participants }}
         className="text-blue-600 font-medium hover:underline"
       >
-        {" "}
         View Participants
       </Link>
     </div>

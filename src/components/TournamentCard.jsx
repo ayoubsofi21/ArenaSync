@@ -10,24 +10,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 function TournamentCard({ tournament }) {
-  // const [isRegistered, setIsRegistered] = useState(false);
-
-  // useEffect(() => {
-  //   const saved = localStorage.getItem(`registered-${tournament.id}`);
-  //   if (saved === "true") {
-  //     setIsRegistered(true);
-  //   }
-  // }, [tournament.id]);
-  // const handleClick = (e) => {
-  //   if (isRegistered) {
-  //     e.preventDefault(); // stop navigation when unregistering
-  //   }
-
-  //   const newStatus = !isRegistered;
-  //   setIsRegistered(newStatus);
-
-  //   localStorage.setItem(`registered-${tournament.id}`, newStatus);
-  // };
   return (
     <>
       {/* {tournamentData.map((tournament) => ( */}
