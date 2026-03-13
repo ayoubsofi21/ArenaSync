@@ -26,7 +26,17 @@ function TournamentDetails() {
   // }
   const [tournament, setTournament] = useState(null);
   const [loading, setLoading] = useState(true);
+  const clearParticipants = () => {
+    const stored = localStorage.getItem("tournamentData");
+    const tournaments = stored ? JSON.parse(stored) : tournamentData;
 
+    const updatedTournaments = tournaments.map((t) =>
+      t.id === id ? { ...t, participants: [] } : t,
+    );
+
+    localStorage.setItem("tournamentData", JSON.stringify(updatedTournaments));
+    setTournament((prev) => ({ ...prev, participants: [] })); // update UI
+  };
   useEffect(() => {
     setTimeout(() => {
       // const data = tournamentData.find((t) => t.id === id);
@@ -101,6 +111,13 @@ function TournamentDetails() {
             <p>No participants yet</p>
           )}
         </div>
+        <button
+          hidden
+          onClick={clearParticipants}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+        >
+          Clear All Participants
+        </button>
       </div>
     </>
   );
