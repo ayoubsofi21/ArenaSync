@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
+import RegisterButton from "./RegisterButton"; //
 // import { tournamentData } from "../data/tournamentDB";
 import {
   CalendarIcon,
@@ -9,6 +10,24 @@ import {
 } from "@heroicons/react/24/outline";
 
 function TournamentCard({ tournament }) {
+  // const [isRegistered, setIsRegistered] = useState(false);
+
+  // useEffect(() => {
+  //   const saved = localStorage.getItem(`registered-${tournament.id}`);
+  //   if (saved === "true") {
+  //     setIsRegistered(true);
+  //   }
+  // }, [tournament.id]);
+  // const handleClick = (e) => {
+  //   if (isRegistered) {
+  //     e.preventDefault(); // stop navigation when unregistering
+  //   }
+
+  //   const newStatus = !isRegistered;
+  //   setIsRegistered(newStatus);
+
+  //   localStorage.setItem(`registered-${tournament.id}`, newStatus);
+  // };
   return (
     <>
       {/* {tournamentData.map((tournament) => ( */}
@@ -63,12 +82,7 @@ function TournamentCard({ tournament }) {
             </div>
           </div>
         </Link>
-        <Link
-          to={`/register/${tournament.id}`}
-          className="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-        >
-          S'inscrire
-        </Link>
+        <RegisterButton tournamentId={tournament.id} />
       </div>
       {/* ))} */}
     </>
